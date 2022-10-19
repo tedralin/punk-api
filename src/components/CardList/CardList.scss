@@ -1,0 +1,32 @@
+.beer-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin: 20px;
+    padding: 20px;
+    .beer-tile {
+        border: 2px solid black;
+        border-radius: 5px;;
+        width: 25vw;
+        margin: 10px;
+        &__img {
+            height: 180px;
+            padding: 10px;
+        }
+        &__tagline {
+            font-weight: bold;
+        }
+        &__details {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin: 10px;
+        }
+
+        &__desc {
+            text-align: justify;
+            margin: 10px;
+        }
+       
+    }
+}

@@ -1,0 +1,29 @@
+@use "../../assets/sass/_variables.scss" as *;
+
+.search-box {
+  display: flex;
+  flex-direction: column;
+
+  &__input {
+    margin: 20px 0;
+    padding: 10px;
+    font-size: 18px;
+    border: 5px lightskyblue solid;
+    border-radius: 15px;
+    color: $color-black;
+    width: 200px;
+
+    &:focus {
+      border: 5px lightseagreen solid;
+      outline: none;
+    }
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .search-box {
+    &__input {
+      width: 10vw;
+    }
+  }
+}
