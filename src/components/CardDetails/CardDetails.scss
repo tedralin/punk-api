@@ -1,0 +1,11 @@
+.beer-tile__detail {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 5px;
+    &__label {
+        font-weight: bold;
+        margin: 0 2px ;
+    }
+}
+

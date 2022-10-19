@@ -21,15 +21,6 @@ const App = ()  => {
     updateFilterArr (updatedFilterArr)
   }
 
-  // const [filterABV, setFilterABV] = useState(false);
-  // const [filterPH, setFilterPH] = useState(false);
-  // const [filterClassic, setFilterClassic] = useState(false);
-
-  // const toggleFilterABV = () => setFilterABV(!filterABV);
-  // const toggleFilterPH = () => setFilterPH(!filterPH);
-  // const toggleFilterClassic = () => setFilterClassic(!filterClassic);
-
-
   const handleInput = (event) => {
     const cleanInput = event.target.value.toLowerCase();
     setSearchTerm(cleanInput);
@@ -53,14 +44,9 @@ const App = ()  => {
          && (filterArr[2].checked ? beer.ph < 4: true )
 })
     
-    
-  // .map(beer => 
-  //   {beer.id, beer.name, beer.tagline, beer.description, beer.abv, beer.first_brewed, beer.ph})
-
+ 
   return (
     <div className="App">
-        {/* <NavBar searchTerm={searchTerm} handleInput={handleInput} 
-                toggleABV={toggleFilterABV} togglePH={toggleFilterPH} toggleClassic={toggleFilterClassic}/> */}
         <NavBar searchTerm={searchTerm} handleInput={handleInput} filterArr={filterArr} toggleCheckedFilter={toggleCheckedFilter}/>
         <Main beersArr={filteredBeersArr} />
     </div>
