@@ -8,7 +8,7 @@ const Card = (props) => {
     {label: "First Brewed", value: beer.first_brewed}]
   
   return (
-    <div className="beer-tile" key={beer.id}>
+    <div className="beer-tile">
       <img className="beer-tile__img"
           src={beer.image_url}
           alt={beer.name}

@@ -5,7 +5,7 @@ const CardDetails = (props) => {
   const {otherInfoArr} = props;
   const infoArr = otherInfoArr.map(info => {
     return (
-        <div className="beer-tile__detail">
+        <div className="beer-tile__detail" key={info.label}>
             <div className = "beer-tile__detail__label">{info.label}: </div>
             <div className = "beer-tile__detail__value">{info.value}  </div>
         </div>
