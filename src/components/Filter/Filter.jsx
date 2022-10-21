@@ -1,6 +1,6 @@
 import "./Filter.scss";
-const Filter = (props) => {
-  const { label, value, onChange, filterId } = props;
+const Filter = ({ label, value, onChange, filterId }) => {
+
   return (
     <label className="filter">
       <input

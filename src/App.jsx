@@ -14,7 +14,11 @@ const App = ()  => {
   ];
 
   const [filterArr, updateFilterArr] = useState(initFilterArr);
+
+  // Instead of getting the new set of beers from api everytime I get a new filter criteria, I will just get everything once
+  // and apply filter array
   useEffect(() => getBeersArr(), [filterArr, searchTerm]);
+    // useEffect(() => getBeersArr(), []);
 
 
   const toggleCheckedFilter = (filterId) => {
@@ -29,49 +33,62 @@ const App = ()  => {
     setSearchTerm(cleanInput);
   };
 
-//   const filteredBeersArr = beers
-//       .filter((beer) => {
-//       const beerNameLower = beer.name.toLowerCase();
-//       // let filterStr = `${beerNameLower}.includes(${searchTerm})`
-//       // filterArr.forEach(filterCond => {
-//       //   console.log()
-//       //   if (filterCond.checked) {
-//       //     filterStr += ` && beer.${filterCond.field} ${filterCond.operator} ${filterCond.value}`
-//       //   }
-//       // })
-//       // console.log(filterStr)
-//       // return {filterStr};
-//       return beerNameLower.includes(searchTerm)
-//          && (filterArr[0].checked ? beer.abv > 6: true )
-//          && (filterArr[1].checked ? beer.first_brewed.substr(3,6) < 2010: true )
-//          && (filterArr[2].checked ? beer.ph < 4: true )
-// })
-
-// Filter on ph is not available in the api
   const filteredBeersArr = beersArr
       .filter((beer) => {
-      console.log (`name: ${beer.name}  ph: ${beer.ph}`)
-      return (filterArr[2].checked ? beer.ph < 4: true )
+      const beerNameLower = beer.name.toLowerCase();
+      // let filterStr = `${beerNameLower}.includes(${searchTerm})`
+      // filterArr.forEach(filterCond => {
+      //   console.log()
+      //   if (filterCond.checked) {
+      //     filterStr += ` && beer.${filterCond.field} ${filterCond.operator} ${filterCond.value}`
+      //   }
+      // })
+      // console.log(filterStr)
+      // return {filterStr};
+      return beerNameLower.includes(searchTerm)
+         && (filterArr[0].checked ? beer.abv > 6: true )
+         && (filterArr[1].checked ? beer.first_brewed.substr(3,6) < 2010: true )
+         && (filterArr[2].checked ? beer.ph < 4: true )
 })
+
+// Filter on ph is not available in the api
+//   const filteredBeersArr = beersArr
+//       .filter((beer) => {
+//       // console.log (`name: ${beer.name}  ph: ${beer.ph}`)
+//       return (filterArr[2].checked ? beer.ph < 4: true )
+// })
 
 
 const getBeersArr = () => {
-  let url = 'https://api.punkapi.com/v2/beers?'
-  if (searchTerm.length > 0) {
-    url = `${url}beer_name=${searchTerm}`
-  }
-  filterArr.forEach(filterCond => {
-        if (filterCond.checked && filterCond.param) {
-          url = `${url}&${filterCond.param}=${filterCond.value}`
-        }
-      })
-  console.log(url)
+  let url = 'https://api.punkapi.com/v2/beers?per_page=80'
+  // let page=1;
+  // let morePages=true;
+  // while (morePages) {
+  //   url=`${url}&page=${page}`
+  //   const morePages = callBeerUrl(url);
+  //   page=page+1;
+  //   } 
+  
+  //removing this since api cannot handle filter on ph; this causes inconsistent results
+  // if (searchTerm.length > 0) {
+  //   url = `${url}&beer_name=${searchTerm}`
+  // }
+  // filterArr.forEach(filterCond => {
+  //       if (filterCond.checked && filterCond.param) {
+  //         url = `${url}&${filterCond.param}=${filterCond.value}`
+  //       }
+  //     })
+  // console.log(url)
   callBeerUrl(url);
 }
 
 const callBeerUrl = async (url) => {
   const res = await fetch(url);
   const data = await res.json();
+  // if (data.length>0) {
+  //   // setBeersArr(current => [...current, data]); 
+  //   console.log(beersArr) ;
+  // }
   setBeersArr(data);
 }
 
