@@ -1,5 +1,5 @@
-import Filter from "../../components/Filter/Filter";
-import SearchBox from "../../components/SearchBox/SearchBox";
+import Filter from "../Filter/Filter";
+import SearchBox from "../SearchBox/SearchBox"
 
 import "./NavBar.scss";
 const NavBar = (props) => {

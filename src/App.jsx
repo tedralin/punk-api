@@ -1,7 +1,7 @@
 import './App.scss';
 import { useEffect, useState } from "react";
 import Main from './containers/Main/Main';
-import NavBar from './containers/NavBar/NavBar';
+import NavBar from './components/NavBar/NavBar';
 // import beers from './data/beers';
 
 const App = ()  => {
@@ -65,7 +65,7 @@ const getBeersArr = () => {
   // let morePages=true;
   // while (morePages) {
   //   url=`${url}&page=${page}`
-  //   const morePages = callBeerUrl(url);
+  //   morePages = await callBeerUrl(url);
   //   page=page+1;
   //   } 
   
@@ -91,6 +91,52 @@ const callBeerUrl = async (url) => {
   // }
   setBeersArr(data);
 }
+
+// const callBeerUrl = async () => {
+//   let url = 'https://api.punkapi.com/v2/beers?per_page=80'
+//   let page=1;
+//   let pagesArray = [];
+//   let pageUrl="";
+//   for (page; page>0; page++) {
+//     pageUrl=`${url}&page=${page}`
+//     console.log(pageUrl)
+//     const res = await fetch(pageUrl);
+//     const data = await res.json();
+//       if (data.length>0) {
+//       // setBeersArr(current => [...current, data]); 
+//       pagesArray.push(data);
+//       console.log(`page ${page} with array size ${pagesArray.length}`) ;
+      
+//       } else {page = 0}
+//     }
+//   }
+//   setBeersArr(pagesArray);
+
+// }
+
+// const callBeerUrl = async () => {
+//   let url = 'https://api.punkapi.com/v2/beers?per_page=80'
+//   let page=1;
+//   let pagesArray = [];
+//   let morePages=true;
+
+//   for (page; morePages; page++) {
+//     url=`${url}&page=${page}`
+//     fetch(url)
+//     .then((res) => res.json())
+//     .then((data) => {
+//       console.log(data.length)
+//       if (data.length>0 && page <3) {
+//         pagesArray.push(data);
+//         console.log(`page: ${page} now has ${pagesArray.length}`);
+//         console.log(url)
+//       } else {page = 0;
+//       morePages=false;}
+//     })
+//   setBeersArr(pagesArray);
+// }
+// }
+
 
   return (
     <div className="App">
