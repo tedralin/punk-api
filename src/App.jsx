@@ -60,14 +60,6 @@ const App = ()  => {
 
 
 const getBeersArr = () => {
-  let url = 'https://api.punkapi.com/v2/beers?per_page=80'
-  // let page=1;
-  // let morePages=true;
-  // while (morePages) {
-  //   url=`${url}&page=${page}`
-  //   morePages = await callBeerUrl(url);
-  //   page=page+1;
-  //   } 
   
   //removing this since api cannot handle filter on ph; this causes inconsistent results
   // if (searchTerm.length > 0) {
@@ -78,40 +70,61 @@ const getBeersArr = () => {
   //         url = `${url}&${filterCond.param}=${filterCond.value}`
   //       }
   //     })
-  // console.log(url)
-  callBeerUrl(url);
+  callBeerUrl();
 }
 
-const callBeerUrl = async (url) => {
-  const res = await fetch(url);
-  const data = await res.json();
-  // if (data.length>0) {
-  //   // setBeersArr(current => [...current, data]); 
-  //   console.log(beersArr) ;
-  // }
-  setBeersArr(data);
+const callBeerUrl = async () => {
+  const url = 'https://api.punkapi.com/v2/beers?per_page=80&page='
+  const urls = [`${url}1`, `${url}2`, `${url}3`, `${url}4`, `${url}5`];
+  const promises = urls.map(url => fetch(url));
+  const responses = await Promise.all(promises)
+  const dataArr = await Promise.all(responses.map(response => response.json()));
+  const result = dataArr.flat();
+  setBeersArr(result);
+
 }
+
+
+  return (
+    <div className="App">
+        <NavBar searchTerm={searchTerm} handleInput={handleInput} filterArr={filterArr} toggleCheckedFilter={toggleCheckedFilter}/>
+        <Main beersArr={filteredBeersArr} />
+    </div>
+  );
+}
+
+export default App;
 
 // const callBeerUrl = async () => {
 //   let url = 'https://api.punkapi.com/v2/beers?per_page=80'
 //   let page=1;
+//   let morePages=true;
 //   let pagesArray = [];
-//   let pageUrl="";
-//   for (page; page>0; page++) {
-//     pageUrl=`${url}&page=${page}`
-//     console.log(pageUrl)
-//     const res = await fetch(pageUrl);
-//     const data = await res.json();
-//       if (data.length>0) {
-//       // setBeersArr(current => [...current, data]); 
-//       pagesArray.push(data);
-//       console.log(`page ${page} with array size ${pagesArray.length}`) ;
-      
-//       } else {page = 0}
-//     }
-//   }
-//   setBeersArr(pagesArray);
+//   // let pageUrl="";
+//   for (page; morePages && page<6; page++) {
+//     const data = await callBeerPageUrl(page);
+//     // pageUrl=`${url}&page=${page}`
+//     // console.log(pageUrl)
+//     // const res = await fetch(pageUrl);
+//     // const data = await res.json();
+//     //   if (data.length>0) {
+//       // await setBeersArr(current => [...current, data]); 
 
+//       console.log(`page ${page} with array size ${beersArr.length}`) ;
+//       console.log(beersArr)
+      
+//     //   } else {page = 0}
+//     }
+//   // }
+//   // setBeersArr(pagesArray);
+
+// }
+
+// const callBeerPageUrl = async (page) => {
+//   const res = await fetch(`https://api.punkapi.com/v2/beers?per_page=80&page=${page}`);
+//   const data = await res.json();
+//   await console.log(data);
+//   await setBeersArr(current => [...current, data]); 
 // }
 
 // const callBeerUrl = async () => {
@@ -138,12 +151,3 @@ const callBeerUrl = async (url) => {
 // }
 
 
-  return (
-    <div className="App">
-        <NavBar searchTerm={searchTerm} handleInput={handleInput} filterArr={filterArr} toggleCheckedFilter={toggleCheckedFilter}/>
-        <Main beersArr={filteredBeersArr} />
-    </div>
-  );
-}
-
-export default App;
