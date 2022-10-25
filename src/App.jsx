@@ -17,8 +17,8 @@ const App = ()  => {
 
   // Instead of getting the new set of beers from api everytime I get a new filter criteria, I will just get everything once
   // and apply filter array
-  useEffect(() => getBeersArr(), [filterArr, searchTerm]);
-    // useEffect(() => getBeersArr(), []);
+  // useEffect(() => getBeersArr(), [filterArr, searchTerm]);
+    useEffect(() => getBeersArr(), []);
 
 
   const toggleCheckedFilter = (filterId) => {

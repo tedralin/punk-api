@@ -12,11 +12,10 @@ it("SearchText rendered", () => {
     const searchText=screen.getByPlaceholderText (/search here .../i);
     expect(searchText).toBeInTheDocument();
 })
-xit("Value entered is read", () => {
+it("Value entered is read", () => {
     render(<SearchBox/>);
     const searchText=screen.getByPlaceholderText (/search here .../i);
     userEvent.type(searchText,"b")
-    const searchValue = screen.getByDisplayValue("b");
-    console.log(searchValue)
-    expect(searchValue).toContain("b")
+    const searchValue = screen.getByRole('textbox');
+    expect(searchValue).toHaveValue("b")
 })
