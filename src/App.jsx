@@ -36,6 +36,12 @@ const App = ()  => {
   const filteredBeersArr = beersArr
       .filter((beer) => {
       const beerNameLower = beer.name.toLowerCase();
+      let firstBrewedYear;
+      if (beer.first_brewed.length === 4) {
+        firstBrewedYear = beer.first_brewed
+      } else {
+        firstBrewedYear = beer.first_brewed.substr(3,6)
+      }
       // let filterStr = `${beerNameLower}.includes(${searchTerm})`
       // filterArr.forEach(filterCond => {
       //   console.log()
@@ -47,7 +53,7 @@ const App = ()  => {
       // return {filterStr};
       return beerNameLower.includes(searchTerm)
          && (filterArr[0].checked ? beer.abv > 6: true )
-         && (filterArr[1].checked ? beer.first_brewed.substr(3,6) < 2010: true )
+         && (filterArr[1].checked ? firstBrewedYear < 2010: true )
          && (filterArr[2].checked ? beer.ph < 4: true )
 })
 

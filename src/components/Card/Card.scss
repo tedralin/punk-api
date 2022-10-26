@@ -3,19 +3,21 @@
     box-shadow: 0px 10px 20px rgba(black, 0.25);
     border-radius: 10px;
     max-width: 350px;
+    // max-height: 400px;
     // width: auto;
     // height: auto;
-    padding: 10px;
+    padding: 2px 5px;
     &__img {
-        height: 150px;
-        padding: 10px;
+        height: 100px;
+        padding: 2px;
     }
     &__tagline {
         font-weight: bold;
     }
     &__desc {
         text-align: justify;
-        margin: 10px;
+        margin: 4px;
+        font-size: 14px;
     }
    
 }

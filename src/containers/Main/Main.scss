@@ -1,0 +1,8 @@
+.carousel {
+    margin: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    .arrow-disabled {
+        opacity: 0.5;
+    }
+}
