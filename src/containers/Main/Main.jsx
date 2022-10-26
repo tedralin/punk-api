@@ -1,8 +1,7 @@
 import CardList from "../../components/CardList/CardList";
-import leftArrow from "../../assets/images/left-arrow.png";
-import rightArrow from "../../assets/images/right-arrow.png";
 import { useEffect, useState } from "react";
 import "./Main.scss";
+import Carousel from "../../components/Carousel/Carousel";
 
 const Main = (props) => {
   const {beersArr} = props;
@@ -54,10 +53,11 @@ const Main = (props) => {
         <h2>Beer Catalog</h2>
         {/* <CardList beersArr={beersArr}/> */}
         <CardList beersArr={beersArr.slice(sliceStart, sliceEnd)}/>
-        <div className="carousel">
+        <Carousel sliceStart={sliceStart} sliceEnd={sliceEnd} arrayLen={beersArr.length} handleIncrement={handleIncrement} handleDecrement={handleDecrement} />
+        {/* <div className="carousel">
           <img src={leftArrow}  alt="left arrow"  onClick={handleDecrement} className={sliceStart===0?"arrow-disabled":"arrow-enabled"}/>
           <img src={rightArrow} alt="right arrow" onClick={handleIncrement} className={sliceEnd>=beersArr.length?"arrow-disabled":"arrow-enabled"}/>
-        </div>        
+        </div>         */}
     </div>
   )}
 
